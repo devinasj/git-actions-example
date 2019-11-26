@@ -19,10 +19,11 @@ metadata:
 spec:
   replicas: 3
   strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
-  minReadySeconds: 5 
+  type: RollingUpdate
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 1
+#  minReadySeconds: 5
   template:
     metadata:
       labels:
@@ -31,14 +32,8 @@ spec:
       containers:
       - name: gke-test
         image: gcr.io/kryptoknight-259909/gke-test:v2
-        imagePullPolicy: Always
         ports:
         - containerPort: 5000
-        resources:
-          requests:
-            cpu: 100m
-          limits:
-            cpu: 100m
         readinessProbe:
           httpGet:
             path: /
@@ -46,3 +41,8 @@ spec:
             initialDelaySeconds: 5
             periodSeconds: 5
             successThreshold: 1
+        resources:
+          requests:
+            cpu: 100m
+          limits:
+            cpu: 100m
