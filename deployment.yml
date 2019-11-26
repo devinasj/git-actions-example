@@ -17,14 +17,14 @@ kind: Deployment
 metadata:
   name: gke-test
 spec:
-  replicas: 5
+  replicas: 3
   minReadySeconds: 5
   revisionHistoryLimit: 4
   strategy:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 10
-      maxUnavailable: 3
+      maxUnavailable: 2
   template:
     metadata:
       labels:
