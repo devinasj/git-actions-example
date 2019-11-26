@@ -1,5 +1,6 @@
 pytest
 Flask
+python-dateutil
 python_telegram_bot
 pandas
 paramiko
