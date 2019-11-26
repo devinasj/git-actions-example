@@ -18,12 +18,12 @@ metadata:
   name: gke-test
 spec:
   replicas: 3
+  minReadySeconds: 5
   strategy:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 1
-      minReadySeconds: 5
   template:
     metadata:
       labels:
