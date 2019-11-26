@@ -28,7 +28,7 @@ RUN sed -i 's,REF,'"$GITHUB_REF"',' index.html
 CMD nginx -g 'daemon off;'
 
 
-FROM python::3.7.3-stretch
+FROM python:3.7.3-stretch
 
 COPY requirements.txt /tmp/
 RUN pip install -r /tmp/requirements.txt
