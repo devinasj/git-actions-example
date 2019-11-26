@@ -17,7 +17,7 @@ kind: Deployment
 metadata:
   name: gke-test
 spec:
-  replicas: 1
+  replicas: 3
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: gke-test
-        image: gcr.io/kryptoknight-259909/gke-test:v2
+        image: gcr.io/kryptoknight-259909/gke-test:latest
         ports:
         - containerPort: 5000
         resources:
