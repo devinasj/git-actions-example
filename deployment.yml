@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: gke-test
-        image: gcr.io/kryptoknight-259909/github.com/devinasj/github-actions-example:v2
+        image: gcr.io/kryptoknight-259909/gke-test:v2
         ports:
         - containerPort: 5000
         resources:
