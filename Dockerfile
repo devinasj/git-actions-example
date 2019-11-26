@@ -10,6 +10,16 @@
 # implied. See the License for the specific language governing permissions and limitations under the
 # License.
 
+
+FROM python
+
+WORKDIR /home
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+COPY little_app.py .
+CMD [ "python", "little_app.py" ]
+
 FROM nginx
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
@@ -26,21 +36,3 @@ RUN sed -i 's,SHA,'"$GITHUB_SHA"',' index.html
 RUN sed -i 's,REF,'"$GITHUB_REF"',' index.html
 
 CMD nginx -g 'daemon off;'
-
-
-FROM python
-
-WORKDIR /home
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-
-COPY little_app.py .
-CMD [ "python", "little_app.py" ]
-
-# RUN mkdir /app
-# WORKDIR /app
-# ADD . /app/
-# RUN pip install -r requirements.txt
-
-# EXPOSE 5001
-# CMD ["python", "/app/main.py"]
