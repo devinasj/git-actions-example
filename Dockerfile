@@ -28,12 +28,22 @@ RUN sed -i 's,REF,'"$GITHUB_REF"',' index.html
 CMD nginx -g 'daemon off;'
 
 
-FROM python:3.7
+FROM python::3.7.3-stretch
 
-RUN mkdir /app
-WORKDIR /app
-ADD . /app/
-RUN pip install -r requirements.txt
+COPY requirements.txt /tmp/
+RUN pip install -r /tmp/requirements.txt
 
-EXPOSE 5001
-CMD ["python", "/app/main.py"]
+RUN useradd --create-home appuser
+WORKDIR /home/appuser
+USER appuser
+
+COPY little_app.py .
+CMD [ "python", "./little_app.py" ]
+
+# RUN mkdir /app
+# WORKDIR /app
+# ADD . /app/
+# RUN pip install -r requirements.txt
+
+# EXPOSE 5001
+# CMD ["python", "/app/main.py"]
