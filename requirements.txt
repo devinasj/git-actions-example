@@ -1,0 +1,6 @@
+pytest==4.3.1
+Flask==1.0.2
+python_telegram_bot==12.2.0
+pandas==0.25.3
+paramiko==2.6.0
+telegram==0.0.1
